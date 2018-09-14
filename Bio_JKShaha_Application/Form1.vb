@@ -214,8 +214,8 @@ Public Class Form1
                     End If
 
                 Catch ex As Exception
+                    arrayDevices(i) = "NotConnect".ToString()
                     MsgBox("Wrong IP address format" + vbCrLf + ex.Message, MsgBoxStyle.Information)
-
                 End Try
 
                 i += 1
@@ -474,10 +474,5 @@ Public Class Form1
         Read_txtFile()
         Connect_Device()
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-    End Sub
-
 
 End Class
