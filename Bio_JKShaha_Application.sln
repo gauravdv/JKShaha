@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bio_JKShaha_Application", "Bio_JKShaha_Application\Bio_JKShaha_Application.vbproj", "{551F1FD7-1316-4359-A382-D0C4BB9EA51E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Debug|x86.ActiveCfg = Debug|x86
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Debug|x86.Build.0 = Debug|x86
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Release|x86.ActiveCfg = Release|x86
+		{551F1FD7-1316-4359-A382-D0C4BB9EA51E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25C81DCE-EF23-44AC-BF8E-21EA5513863F}
+	EndGlobalSection
+EndGlobal

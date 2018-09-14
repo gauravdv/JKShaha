@@ -1,0 +1,14 @@
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\bin\Release\Bio_JKShaha_Application.exe.config
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\bin\Release\Bio_JKShaha_Application.exe
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\bin\Release\Bio_JKShaha_Application.pdb
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\bin\Release\Bio_JKShaha_Application.xml
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\bin\Release\MySql.Data.dll
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.vbprojResolveAssemblyReference.cache
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.Form1.resources
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.Resources.resources
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.vbproj.GenerateResource.cache
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.vbproj.CoreCompileInputs.cache
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.vbproj.CopyComplete
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.exe
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.xml
+C:\Users\konsultera\Desktop\Bio_JKShaha_Application\Bio_JKShaha_Application\obj\Release\Bio_JKShaha_Application.pdb
