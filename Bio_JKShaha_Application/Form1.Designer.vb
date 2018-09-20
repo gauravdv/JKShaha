@@ -29,7 +29,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(39, 51)
+        Me.Label1.Location = New System.Drawing.Point(22, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(87, 20)
         Me.Label1.TabIndex = 0
@@ -39,7 +39,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(342, 134)
+        Me.ClientSize = New System.Drawing.Size(342, 62)
         Me.Controls.Add(Me.Label1)
         Me.Name = "Form1"
         Me.Text = "Deleteing Process"
