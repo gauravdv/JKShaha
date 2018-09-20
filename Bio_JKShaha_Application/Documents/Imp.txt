@@ -1,0 +1,10 @@
+Create a  folder in C:\JkshahDevice folder and add 2 files 
+
+1. devices.txt :
+	192.168.1.121 9
+	Device ip and device id in db
+
+it used for the deleting process
+2. DeleteRecord.txt
+	2018/09/12 27
+	tadays date and 0
