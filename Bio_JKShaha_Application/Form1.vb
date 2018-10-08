@@ -29,6 +29,7 @@ Public Class Form1
     Dim List_StudentId As New List(Of String)()
 
     Dim List_StudentAllId As New List(Of String)()
+    Dim Student_100 As New List(Of String)()
 
     Dim BatchId As String
 
@@ -45,7 +46,9 @@ Public Class Form1
             MysqlConn.Close()
             Read_txtFile()
         Catch ex As Exception
-            MsgBox("DataBase Connection Errors Found Contact Tom The Naresh - Data Voice" + ex.Message)
+            MsgBox("DataBase Connection Errors Found Contact To The Naresh - Data Voice" + ex.Message)
+            Application.Exit()
+            End
         End Try
 
     End Sub
@@ -82,7 +85,9 @@ Public Class Form1
             objReader.Close()
             'Console.ReadKey(True)
         Else
-            MsgBox(vbCrLf & "File Does Not Exist")
+            MsgBox(vbCrLf & "File Does Not Exist Contact To The Naresh - Data Voice")
+            Application.Exit()
+            End
         End If
         'Console.Write(vbCrLf & "Press any key to continue...")
         'Console.ReadKey(True)
@@ -154,7 +159,7 @@ Public Class Form1
                         AND a.branchId = fldi_branch_id
                         AND c.fldi_id =  '" + _DeviceNumber + "' 
                         AND a.completionDate >  '" + CurrentDate + "'
-                        )LIMIT  " + _TxtCountLimit + ", 5000 "
+                        )LIMIT  " + _TxtCountLimit + ", 50000 "
 
             'Sql = "SELECT studentId
             '            FROM tblBatchMst a, tblStudentBatchDtls b, tbl_branch_device c
@@ -171,14 +176,17 @@ Public Class Form1
                 If (dbread.HasRows()) Then
                     While dbread.Read()
                         List_StudentAllId.Add(dbread("studentId").ToString())
+                        'MessageBox.Show("Get All Student ID")
                     End While
                 Else
-                    'MsgBox("Device Number No t Found!")
+                    'MsgBox("Device Number Not Found!")
                 End If
                 dbread.Close()
 
             Catch ex As Exception
-                MsgBox("Error in collecting data from Database. Error is :" & ex.Message)
+                MsgBox("Error in collecting data from Database. Contact To The Naresh - Data Voice Error is :" & ex.Message)
+                Application.Exit()
+                End
             End Try
             MysqlConn.Close()
         End If
@@ -215,7 +223,9 @@ Public Class Form1
 
                 Catch ex As Exception
                     arrayDevices(i) = "NotConnect".ToString()
-                    MsgBox("Wrong IP address format" + vbCrLf + ex.Message, MsgBoxStyle.Information)
+                    MsgBox("Contact To The Naresh - Data Voice, Device Can't Connect, Wrong IP address format" + vbCrLf + ex.Message, MsgBoxStyle.Information)
+                    Application.Exit()
+                    End
                 End Try
 
                 i += 1
@@ -224,7 +234,9 @@ Public Class Form1
 
             'Check All Devices Are Connect Or Not
             If arrayDevices.Contains("NotConnect") Then
-                MsgBox(vbCrLf & "All Devices Are Not Connected")
+                MsgBox(vbCrLf & "All Devices Are Not Connected, Contact To The Naresh - Data Voice")
+                Application.Exit()
+                End
             Else
                 'MsgBox(vbCrLf & "All Devices Are Connected")
                 Delete_StudentDetail()
@@ -241,6 +253,210 @@ Public Class Form1
 
     'Delete Student Detail
     Public Sub Delete_StudentDetail()
+        Dim CurrentDate As String = System.DateTime.Now.ToString("yyyy/MM/dd")
+        Dim strFile As String = "C:\JkshahDevice\DeleteRecord.txt"
+        Dim _CountSundet As Integer
+        _CountSundet = _TxtCountLimit
+        Dim j As Integer
+        Dim i As Integer
+        Dim ii As Integer
+        Dim _Start As Integer = 0
+        Dim _End As Integer = 100
+        Dim Count_Device As Integer = (List_StudentAllId.Count - 1) / 100
+
+        For i = 0 To Count_Device
+            Student_100.Clear()
+            For ii = _Start To _End - 1
+                Student_100.Add(List_StudentAllId(ii).ToString())
+            Next
+
+            For Each value As Tuple(Of String, String, String) In list_DeviceInfo
+                Dim _DeviceIp As String = value.Item1
+                Dim _DeviceNo As String = value.Item2
+                Dim _Port As Integer = 1085
+
+                Try
+                    j = device_connect(_DeviceIp, _Port)
+                    If (j = 0) Then
+
+                    End If
+                Catch ex As Exception
+                    MsgBox("Wrong IP address format" + vbCrLf + ex.Message, MsgBoxStyle.Information)
+                End Try
+
+                For Each value_StudentId As String In Student_100
+                    Dim Each_Student As String = value_StudentId
+                    Dim k As Integer
+                    Dim Card As String
+
+                    Each_Student = Each_Student.Remove(0, 1)
+
+                    Try
+                        k = delete_finger_data(Each_Student)     ' card number must be with eight digit
+
+                        If k = 0 Then
+                            'Rtxt_.Text = "Delete in Process.........."
+                            'MsgBox("Delete in Process..........")
+                        Else
+                            MsgBox("Check time Format, Not Changed Successfully or disconnect device, Contact to Naresh : Data Voice")
+                            Application.Exit()
+                            End
+                        End If
+                    Catch ex As Exception
+                        device_close()
+                        AllFunction()
+                        'If System.IO.File.Exists(strFile) = True Then
+                        '    Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                        '    Dim objWriter As New System.IO.StreamWriter(strFile)
+                        '    objWriter.Write(WriteLine)
+                        '    objWriter.Close()
+                        '    AllFunction()
+                        'End If
+                    End Try
+
+                    Try
+                        Card = String.Format("{0:00000000}", Convert.ToInt32(Each_Student.Trim()))
+                    Catch ex As Exception
+                        Card = Each_Student.Trim()
+                    End Try
+
+                    Try
+                        If (Trim(Card) <> "") Then
+                            k = delete_finger_data(Card)     ' card number must be with eight digit
+                            If k = 0 Then
+                                'Rtxt_.Text = "Delete in Process.........."
+                                'MsgBox("Delete in Process..........")
+                            Else
+                                'MsgBox("Check time Format, Not Changed Successfully")
+                            End If
+                        End If
+                    Catch ex As Exception
+                        device_close()
+                        AllFunction()
+                        'If System.IO.File.Exists(strFile) = True Then
+                        '    Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                        '    Dim objWriter As New System.IO.StreamWriter(strFile)
+                        '    objWriter.Write(WriteLine)
+                        '    objWriter.Close()
+                        '    AllFunction()
+                        'End If
+                    End Try
+                Next
+
+            Next
+            _CountSundet += 100
+            If System.IO.File.Exists(strFile) = True Then
+                Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                Dim objWriter As New System.IO.StreamWriter(strFile)
+                objWriter.Write(WriteLine)
+                objWriter.Close()
+            End If
+            _Start = (_Start + 100)
+            _End = _End + 100
+        Next
+
+        MsgBox("StudentId Deleted successfully From All the Devices")
+
+
+    End Sub
+
+    Public Sub Delete_StudentDetail3()
+        Dim CurrentDate As String = System.DateTime.Now.ToString("yyyy/MM/dd")
+        Dim strFile As String = "C:\JkshahDevice\DeleteRecord.txt"
+
+        Dim j As Integer
+        Dim i As Integer = 0
+        Dim Count_Device As Integer = list_DeviceInfo.Count - 1
+        Dim arrayDevices(Count_Device) As String
+        Dim _CountSundet As Integer
+        _CountSundet = _TxtCountLimit
+
+        For Each value_StudentId As String In List_StudentAllId
+
+            Dim Each_Student As String = value_StudentId
+            Dim k As Integer
+            Dim Card As String
+
+
+            Each_Student = Each_Student.Remove(0, 1)
+
+            For Each value As Tuple(Of String, String, String) In list_DeviceInfo
+                Dim _DeviceIp As String = value.Item1
+                Dim _DeviceNo As String = value.Item2
+                Dim _Port As Integer = 1085
+
+                Try
+                    j = device_connect(_DeviceIp, _Port)
+                    If (j = 0) Then
+
+                        Try
+                            k = delete_finger_data(Each_Student)     ' card number must be with eight digit
+
+                            If k = 0 Then
+                                'Rtxt_.Text = "Delete in Process.........."
+                                'MsgBox("Delete in Process..........")
+                            Else
+                                'MsgBox("Check time Format, Not Changed Successfully")
+                            End If
+                        Catch ex As Exception
+                            device_close()
+                            If System.IO.File.Exists(strFile) = True Then
+                                Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                                Dim objWriter As New System.IO.StreamWriter(strFile)
+                                objWriter.Write(WriteLine)
+                                objWriter.Close()
+                                AllFunction()
+                            End If
+                        End Try
+
+                        Try
+                            Card = String.Format("{0:00000000}", Convert.ToInt32(Each_Student.Trim()))
+                        Catch ex As Exception
+                            Card = Each_Student.Trim()
+                        End Try
+
+                        Try
+                            If (Trim(Card) <> "") Then
+                                k = delete_finger_data(Card)     ' card number must be with eight digit
+                                If k = 0 Then
+                                    'Rtxt_.Text = "Delete in Process.........."
+                                    'MsgBox("Delete in Process..........")
+                                Else
+                                    'MsgBox("Check time Format, Not Changed Successfully")
+                                End If
+                            End If
+                        Catch ex As Exception
+                            device_close()
+                            If System.IO.File.Exists(strFile) = True Then
+                                Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                                Dim objWriter As New System.IO.StreamWriter(strFile)
+                                objWriter.Write(WriteLine)
+                                objWriter.Close()
+                                AllFunction()
+                            End If
+                        End Try
+
+                    End If
+                Catch ex As Exception
+                    MsgBox("Wrong IP address format" + vbCrLf + ex.Message, MsgBoxStyle.Information)
+                End Try
+            Next
+            If System.IO.File.Exists(strFile) = True Then
+                Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                Dim objWriter As New System.IO.StreamWriter(strFile)
+                objWriter.Write(WriteLine)
+                objWriter.Close()
+            End If
+
+            _CountSundet += 1
+        Next
+
+        MsgBox("StudentId Deleted successfully From All the Devices")
+
+
+    End Sub
+
+    Public Sub Delete_StudentDetail2()
         Dim CurrentDate As String = System.DateTime.Now.ToString("yyyy/MM/dd")
 
         Dim j As Integer
@@ -263,12 +479,14 @@ Public Class Form1
         'End Try
         'MysqlConn.Close()
 
+
         For Each value As Tuple(Of String, String, String) In list_DeviceInfo
             Dim _DeviceIp As String = value.Item1
             Dim _DeviceNo As String = value.Item2
             Dim _Port As Integer = 1085
             Dim _CountSundet As Integer
             _CountSundet = _TxtCountLimit
+            '_CountSundet = 0
             Dim strFile As String = "C:\JkshahDevice\DeleteRecord.txt"
 
             Try
@@ -278,6 +496,7 @@ Public Class Form1
                     'Rtxt_.Text = vbCrLf & "Device Connect Sucessfully " + _DeviceIp
                     'MsgBox(vbCrLf & "Device Connect Sucessfully " + _DeviceIp)
                     arrayDevices(i) = "Connect".ToString()
+
 
                     'Delete Student into Devices
                     For Each value_StudentId As String In List_StudentAllId
@@ -342,6 +561,13 @@ Public Class Form1
                             End If
                         End Try
 
+                        If System.IO.File.Exists(strFile) = True Then
+                            Dim WriteLine As String = CurrentDate + " " + CStr(_CountSundet)
+                            Dim objWriter As New System.IO.StreamWriter(strFile)
+                            objWriter.Write(WriteLine)
+                            objWriter.Close()
+                        End If
+
                         _CountSundet += 1
                     Next
 
@@ -378,7 +604,6 @@ Public Class Form1
         'MysqlConn.Close()
 
     End Sub
-
 
     '''''''Old *****************************************************************************
     '''''''get Branch Batch to deleted
@@ -466,12 +691,14 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Application.Exit()
+        'End
         AllFunction()
     End Sub
 
     Private Sub AllFunction()
         DataBase_connect()
-        Read_txtFile()
+        'Read_txtFile()
         Connect_Device()
     End Sub
 
